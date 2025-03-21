@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
-import Navbar from "@/components/Navbar";
 import LiveMarket from "@/components/LiveMarket";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
+import Navbar from "@/components/Navbar";
+import AdvisorBot from "@/components/AdvisorBot";
+
 
 const Index = () => {
   useEffect(() => {
@@ -16,21 +18,21 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      
+
       <main className="flex-grow mt-[72px]">
         {/* Hero Section */}
         <Hero />
-        
+
         {/* Live Market Section */}
         <section className="py-16 bg-white dark:bg-gray-950">
           <div className="container mx-auto px-4 md:px-6">
             <LiveMarket />
           </div>
         </section>
-        
+
         {/* Features Section */}
         <Features />
-        
+
         {/* Testimonials Section */}
         <section className="py-16 bg-gray-50/50 dark:bg-gray-900/50 relative overflow-hidden">
           {/* Background Effects */}
@@ -38,7 +40,7 @@ const Index = () => {
             <div className="absolute right-0 top-0 w-96 h-96 bg-blue-200 dark:bg-blue-900 rounded-full filter blur-3xl opacity-30" />
             <div className="absolute left-0 bottom-0 w-96 h-96 bg-purple-200 dark:bg-purple-900 rounded-full filter blur-3xl opacity-30" />
           </div>
-          
+
           <div className="container mx-auto px-4 md:px-6 relative z-10">
             <div className="text-center max-w-3xl mx-auto mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -48,7 +50,7 @@ const Index = () => {
                 See what our users are saying about their investment journey with InvestGenius.
               </p>
             </div>
-            
+
             <div className="grid gap-8 md:grid-cols-3">
               {[
                 {
@@ -87,7 +89,34 @@ const Index = () => {
             </div>
           </div>
         </section>
-        
+
+        <section>
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+
+            <main className="flex-grow mt-[72px] py-8">
+              <section className="py-16 bg-white dark:bg-gray-950">
+                <div className="container mx-auto px-4 md:px-6">
+                  <div className="text-center max-w-3xl mx-auto mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                      24/7 AI Crypto Assistant
+                    </h2>
+                    <p className="text-lg text-gray-600 dark:text-gray-400">
+                      Get instant answers to your crypto questions and personalized investment advice.
+                    </p>
+                  </div>
+
+                  <div className="max-w-3xl mx-auto">
+                    <AdvisorBot />
+                  </div>
+                </div>
+              </section>
+            </main>
+
+            <Footer />
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="py-20 bg-white dark:bg-gray-950 relative overflow-hidden">
           <div className="container mx-auto px-4 md:px-6">
@@ -110,7 +139,7 @@ const Index = () => {
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   );
