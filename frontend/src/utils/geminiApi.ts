@@ -1,6 +1,6 @@
 import { CryptoNews, MarketSentiment } from "@/types/crypto";
 
-const GEMINI_API_KEY = "YOUR_GEMINI_API_KEY";  // Replace with your actual API key
+const GEMINI_API_KEY ="AIzaSyCE0cUlGzUmAgFubB722E96zjZM0EUcvGc";  // Replace with your actual API key
 
 interface GeminiResponse {
   candidates: {
