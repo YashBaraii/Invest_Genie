@@ -2,7 +2,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Advisor from "./pages/Advisor";
@@ -16,6 +17,17 @@ import AuthPage from "@/pages/auth/AuthPage";
 import { ThemeProvider } from "@/hooks/use-theme.tsx";
 
 const queryClient = new QueryClient();
+
+// Add ScrollToTop component
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 // Protected Route Wrapper
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -61,6 +73,7 @@ const App = () => (
       <ThemeProvider defaultTheme="system" storageKey="ui-theme">
         <QueryClientProvider client={queryClient}>
           <TooltipProvider>
+            <ScrollToTop />
             <Toaster />
             <Sonner />
             <Routes>
