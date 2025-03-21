@@ -7,21 +7,29 @@ import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import AdvisorBot from "@/components/AdvisorBot";
 
-
 const Index = () => {
   useEffect(() => {
     // Reset scroll position and prevent auto-scrolling
     window.history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
+    
+    // Add scroll behavior smooth for better UX
+    document.documentElement.style.scrollBehavior = 'smooth';
+    
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+    };
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col overflow-x-hidden">
       <Navbar />
 
-      <main className="flex-grow mt-[72px]">
+      <main className="flex-grow">
         {/* Hero Section */}
-        <Hero />
+        <section className="min-h-[calc(100vh-72px)] flex items-center justify-center bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-950">
+          <Hero />
+        </section>
 
         {/* Live Market Section */}
         <section className="py-16 bg-white dark:bg-gray-950">
@@ -90,30 +98,21 @@ const Index = () => {
           </div>
         </section>
 
-        <section>
-          <div className="min-h-screen flex flex-col">
-            <Navbar />
+        {/* AI Assistant Section */}
+        <section className="py-16 bg-white dark:bg-gray-950">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                24/7 AI Crypto Assistant
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-400">
+                Get instant answers to your crypto questions and personalized investment advice.
+              </p>
+            </div>
 
-            <main className="flex-grow mt-[72px] py-8">
-              <section className="py-16 bg-white dark:bg-gray-950">
-                <div className="container mx-auto px-4 md:px-6">
-                  <div className="text-center max-w-3xl mx-auto mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                      24/7 AI Crypto Assistant
-                    </h2>
-                    <p className="text-lg text-gray-600 dark:text-gray-400">
-                      Get instant answers to your crypto questions and personalized investment advice.
-                    </p>
-                  </div>
-
-                  <div className="max-w-3xl mx-auto">
-                    <AdvisorBot />
-                  </div>
-                </div>
-              </section>
-            </main>
-
-            <Footer />
+            <div className="max-w-3xl mx-auto">
+              <AdvisorBot />
+            </div>
           </div>
         </section>
 

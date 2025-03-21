@@ -13,6 +13,7 @@ import MarketInsights from "./pages/MarketInsights";
 import Chat from "./pages/Chat";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import AuthPage from "@/pages/auth/AuthPage";
+import { ThemeProvider } from "@/hooks/use-theme.tsx";
 
 const queryClient = new QueryClient();
 
@@ -55,34 +56,27 @@ function AuthRoute({ children }: { children: React.ReactNode }) {
 }
 
 const App = () => (
-  <BrowserRouter>
+  <ThemeProvider defaultTheme="system" storageKey="ui-theme">
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <AuthProvider>
-          <Toaster />
-          <Sonner />
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
           <Routes>
-            {/* Public Routes */}
             <Route path="/" element={<Index />} />
-            <Route path="/auth" element={<AuthRoute><AuthPage /></AuthRoute>} />
-            <Route path="/login" element={<Navigate to="/auth?mode=login" replace />} />
-            <Route path="/signup" element={<Navigate to="/auth?mode=signup" replace />} />
-            
-            {/* Protected Routes */}
-            <Route path="/advisor" element={<ProtectedRoute><Advisor /></ProtectedRoute>} />
-            <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path="/news" element={<ProtectedRoute><News /></ProtectedRoute>} />
-            <Route path="/portfolio" element={<ProtectedRoute><Portfolio /></ProtectedRoute>} />
-            <Route path="/insights" element={<ProtectedRoute><MarketInsights /></ProtectedRoute>} />
-            <Route path="/chat" element={<ProtectedRoute><Chat /></ProtectedRoute>} />
-            
-            {/* Catch-all route */}
+            <Route path="/advisor" element={<Advisor />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/insights" element={<MarketInsights />} />
+            <Route path="/chat" element={<Chat />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </AuthProvider>
+        </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
-  </BrowserRouter>
+  </ThemeProvider>
 );
 
 export default App;

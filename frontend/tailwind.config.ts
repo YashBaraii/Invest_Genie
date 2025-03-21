@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -120,7 +119,11 @@ export default {
 				'slide-in-left': {
 					'0%': { transform: 'translateX(-100%)' },
 					'100%': { transform: 'translateX(0)' }
-				}
+				},
+				'spin-reverse': {
+					from: { transform: 'rotate(360deg)' },
+					to: { transform: 'rotate(0deg)' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -132,7 +135,8 @@ export default {
 				'fade-in-up': 'fade-in-up 0.5s ease-out',
 				'fade-in-down': 'fade-in-down 0.5s ease-out',
 				'slide-in-right': 'slide-in-right 0.5s ease-out',
-				'slide-in-left': 'slide-in-left 0.5s ease-out'
+				'slide-in-left': 'slide-in-left 0.5s ease-out',
+				'spin-reverse': 'spin-reverse 1s linear infinite',
 			},
 			backdropFilter: {
 				'none': 'none',

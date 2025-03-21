@@ -2,7 +2,6 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
 }
 
 .logo {
@@ -39,4 +38,50 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* Dashboard styles */
+.glass-panel {
+  background-color: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode colors for sidebar */
+:root {
+  --sidebar-background: #121212;
+  --sidebar-foreground: #f5f5f5;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-accent: rgba(255, 255, 255, 0.1);
+  --sidebar-accent-foreground: #f5f5f5;
+  --sidebar-ring: rgba(255, 255, 255, 0.3);
+}
+
+[data-sidebar="sidebar"] {
+  background-color: var(--sidebar-background);
+  color: var(--sidebar-foreground);
+  border-color: var(--sidebar-border);
+}
+
+[data-sidebar="menu-button"] {
+  color: var(--sidebar-foreground);
+}
+
+[data-sidebar="menu-button"]:hover, 
+[data-sidebar="menu-button"][data-active="true"] {
+  background-color: var(--sidebar-accent);
+  color: var(--sidebar-accent-foreground);
+}
+
+[data-sidebar="menu-button"][data-active="true"] {
+  border-left: 3px solid #f7c246;
+}
+
+[data-sidebar="header"] {
+  border-bottom: 1px solid var(--sidebar-border);
+}
+
+[data-sidebar="footer"] {
+  border-top: 1px solid var(--sidebar-border);
 }

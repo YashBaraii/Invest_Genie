@@ -9,12 +9,12 @@ export const fetchTopCryptos = async (): Promise<CryptoCurrency[]> => {
     const response = await fetch(
       "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false&locale=en"
     );
-    
+
     if (!response.ok) {
       // If API fails, return mock data
       return mockCryptoData;
     }
-    
+
     return await response.json();
   } catch (error) {
     console.error("Error fetching crypto data:", error);
@@ -47,7 +47,8 @@ export const fetchCryptoNews = async (): Promise<CryptoNews[]> => {
       url: "#",
       source: "CryptoNews",
       published_at: new Date(Date.now() - 3600000).toISOString(),
-      sentiment: "positive"
+      sentiment: "positive",
+      summary: "Bitcoin has surged past $60,000 as institutional investors continue to show interest in the leading cryptocurrency."
     },
     {
       id: "2",
@@ -55,7 +56,8 @@ export const fetchCryptoNews = async (): Promise<CryptoNews[]> => {
       url: "#",
       source: "CoinDesk",
       published_at: new Date(Date.now() - 7200000).toISOString(),
-      sentiment: "positive"
+      sentiment: "positive",
+      summary: "The Ethereum 2.0 upgrade is on track and expected to significantly improve the network's efficiency and scalability."
     },
     {
       id: "3",
@@ -63,7 +65,8 @@ export const fetchCryptoNews = async (): Promise<CryptoNews[]> => {
       url: "#",
       source: "Bloomberg",
       published_at: new Date(Date.now() - 10800000).toISOString(),
-      sentiment: "neutral"
+      sentiment: "neutral",
+      summary: "Regulators across several countries are discussing potential frameworks for cryptocurrency taxation and reporting."
     },
     {
       id: "4",
@@ -71,7 +74,8 @@ export const fetchCryptoNews = async (): Promise<CryptoNews[]> => {
       url: "#",
       source: "CryptoReport",
       published_at: new Date(Date.now() - 14400000).toISOString(),
-      sentiment: "negative"
+      sentiment: "negative",
+      summary: "The Solana blockchain experienced a brief outage due to high transaction volumes but quickly recovered within hours."
     }
   ];
 };

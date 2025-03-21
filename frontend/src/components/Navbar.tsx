@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
+import { Toggle } from "@/components/ui/toggle";
+import { useTheme } from "@/hooks/use-theme.tsx";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const { isAuthenticated, logout } = useAuth();
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,9 +31,12 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Dashboard", path: "/dashboard" },
-    { name: "Advisor", path: "/advisor" },
     { name: "Chat", path: "/chat" },
   ];
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   const handleLogout = () => {
     logout();
@@ -73,6 +79,14 @@ const Navbar = () => {
 
           {/* Authentication Buttons */}
           <div className="hidden md:flex md:items-center md:space-x-4">
+            <Toggle
+              pressed={theme === 'dark'}
+              onPressedChange={toggleTheme}
+              className="mr-2"
+              size="sm"
+            >
+              {theme === 'dark' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+            </Toggle>
             {isAuthenticated ? (
               <Button
                 variant="outline"
@@ -95,9 +109,9 @@ const Navbar = () => {
                 </Link>
 
                 <Link to="/auth?mode=signup">
-                  <Button 
-                    variant="default" 
-                    size="sm" 
+                  <Button
+                    variant="default"
+                    size="sm"
                     className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl font-medium"
                   >
                     Sign Up
@@ -108,12 +122,22 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-gray-700 dark:text-gray-200 rounded-md"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="flex items-center space-x-2 md:hidden">
+            <Toggle
+              pressed={theme === 'dark'}
+              onPressedChange={toggleTheme}
+              size="sm"
+            >
+              {theme === 'dark' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+            </Toggle>
+
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 text-gray-700 dark:text-gray-200 rounded-md"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -155,9 +179,9 @@ const Navbar = () => {
                     </Button>
                   </Link>
                   <Link to="/auth?mode=signup">
-                    <Button 
-                      variant="default" 
-                      size="sm" 
+                    <Button
+                      variant="default"
+                      size="sm"
                       className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl font-medium w-full"
                     >
                       Sign Up
